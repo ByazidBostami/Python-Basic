@@ -5,4 +5,9 @@ print(type(True))
 s="My Name is Byazid"
 s1=s.lower()
 s2=s.upper()
-print(s1,s2)
+name="byazid bostami"
+capName=name.capitalize()
+titlename=name.title()
+print(s1,s2,capName,titlename)
+print(dir(s))
+print(id(s))
