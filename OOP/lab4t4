@@ -1,0 +1,98 @@
+#Task4
+class Shopidify:
+    """
+    Shopidify class for online shopping procedure.
+    """
+
+    def __init__(self, name=None):
+        """
+        Constructor for Shopidify class.
+        If name is provided, it creates a user account.
+        If name is not provided, it creates a guest account.
+        """
+        self.name = name
+        self.cart = []
+        self.history = []
+
+        if self.name:
+            print(f"Welcome {self.name} to Shopidify")
+        else:
+            print("Welcome to Shopidify")
+
+    def add_to_cart(self, *items):
+        """
+        Method to add items to the cart.
+        """
+        for item in items:
+            self.cart.append(item)
+
+    def display_cart(self):
+        """
+        Method to display the items in the cart.
+        """
+        if self.name:
+            print(f"Items in the cart for {self.name}:")
+        else:
+            print("Items in the cart for Guest:")
+
+        for item in self.cart:
+            if isinstance(item, list):
+                for i in range(0, len(item), 2):
+                    print(f"- {item[i]}: {item[i+1]}x")
+            else:
+                print(f"- {item}: 1x")
+
+    def checkout(self):
+        """
+        Method to checkout and complete the purchase.
+        """
+        if self.name:
+            print(f"Checkout completed for {self.name}")
+        else:
+            print("Checkout completed for Guest")
+
+        self.history.append(self.cart)
+        self.cart = []
+
+    def display_history(self):
+        """
+        Method to display the purchase history.
+        """
+        if self.name:
+            print(f"Purchase history for {self.name}:")
+        else:
+            print("Purchase history for Guest:")
+
+        for i, transaction in enumerate(self.history, start=1):
+            print(f"Transaction {i}:")
+            for item in transaction:
+                if isinstance(item, list):
+                    for i in range(0, len(item), 2):
+                        print(f"- {item[i]}: {item[i+1]}x")
+                else:
+                    print(f"- {item}: 1x")
+
+
+# Test the Shopidify class
+guest_account = Shopidify()
+print("1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+john_account = Shopidify("John")
+print("2xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+guest_account.add_to_cart("Air Jordan", 2)
+guest_account.add_to_cart("Luffy Action Figure")
+guest_account.display_cart()
+print("3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+john_account.add_to_cart(["Chocolate Chip Cookies", 3,"Goku Action Figure",2,"Dumbbells-5kg",2])
+john_account.display_cart()
+print("4xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+guest_account.add_to_cart("Air Jordan")
+guest_account.display_cart()
+print("5xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+guest_account.checkout()
+print("6xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+guest_account.display_history()
+print("7xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+john_account.checkout()
+print("8xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+john_account.display_history()
+print("9xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
